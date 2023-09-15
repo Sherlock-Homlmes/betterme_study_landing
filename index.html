@@ -855,20 +855,20 @@
       const nameForm = document.getElementById('name').value
       const emailForm = document.getElementById('email').value
       const messageForm = document.getElementById('message').value
+      var formData = new FormData()
+      formData.append('name', nameForm)
+      formData.append('email', emailForm)
+      formData.append('message', messageForm)
 
       const response = await fetch(
         serverContactFormLink,
         {
           method: "POST",
-          body: JSON.stringify({
-            name: nameForm,
-            email: emailForm,
-            message: messageForm,
-          })
+          body: formData
         }
       )
 
-      if (response.status === 200) {
+      if (response.status === 204) {
         Swal.fire(successAlertMessage);
         nameForm = ''
         emailForm = ''
